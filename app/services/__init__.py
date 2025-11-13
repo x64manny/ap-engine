@@ -1,7 +1,10 @@
 """
-Business logic services.
+Services for the Attack Path Engine.
 """
+from app.services.attack_path_generator import AttackPathGenerator
 from app.services.llm_client import LLMClient
-from app.services.complete_analyzer import CompleteAnalyzer
 
-__all__ = ["LLMClient", "CompleteAnalyzer"]
+__all__ = [
+    "AttackPathGenerator",
+    "LLMClient",
+]

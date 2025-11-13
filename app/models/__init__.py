@@ -1,7 +1,12 @@
 """
-Data models for the application.
+Data models for the Attack Path Engine.
 """
-from app.models.host import InputHost
-from app.models.complete_analysis import CompleteAnalysisResponse
+from app.models.target_input import TargetInput, VulnerabilityInfo, ExposureInfo
+from app.models.response import AttackPathResponse
 
-__all__ = ["InputHost", "CompleteAnalysisResponse"]
+__all__ = [
+    "TargetInput",
+    "VulnerabilityInfo",
+    "ExposureInfo",
+    "AttackPathResponse",
+]

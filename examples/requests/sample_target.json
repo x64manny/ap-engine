@@ -1,0 +1,20 @@
+{
+  "open_ports": ["22", "80", "443"],
+  "services": ["ssh", "http", "https"],
+  "applications": ["apache", "openssh"],
+  "vulnerabilities": [
+    {
+      "cve": "CVE-2021-3156",
+      "score": "7.8"
+    },
+    {
+      "cve": "CVE-2021-44228",
+      "score": "10.0"
+    }
+  ],
+  "exposure": {
+    "is_internet_exposed": "true",
+    "has_legacy_os": "false",
+    "has_admin_shares": "false"
+  }
+}
