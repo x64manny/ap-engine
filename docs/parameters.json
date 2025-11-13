@@ -1,0 +1,346 @@
+[
+  {
+    "IpAddress": "192.168.100.157",
+    "MacAddress": "00:0C:29:3E:5B:4C",
+    "Os": "Linux 3.10 - 4.11",
+    "Hostname": "test-host",
+    "LastSeen": "2025-11-07T07:28:14Z",
+    "Services": [
+      {
+        "Port": 8080,
+        "Protocol": "tcp",
+        "State": "open",
+        "ServiceName": "http",
+        "Product": "Apache Tomcat/Coyote JSP engine 1.1",
+        "Version": "5.5.23",
+        "ExtraInfo": "Java JDK 1.6.0_45",
+        "LastSeen": "2025-11-07T07:28:14Z",
+        "Vulnerabilities": [
+          {
+            "template": "http/cves/2013/CVE-2013-2251.yaml",
+            "template-id": "CVE-2013-2251",
+            "info": {
+              "name": "Apache Struts 2 - DefaultActionMapper Prefixes OGNL Code Execution",
+              "author": ["exploitation", "dwisiswant0", "alex"],
+              "tags": [
+                "cve2013",
+                "cve",
+                "rce",
+                "struts",
+                "apache",
+                "ognl",
+                "kev",
+                "vkev",
+                "vuln"
+              ],
+              "description": "In Struts 2 before 2.3.15.1 the information following \"action:\", \"redirect:\", or \"redirectAction:\" is not properly sanitized and will be evaluated as an OGNL expression against the value stack. This introduces the possibility to inject server side code.",
+              "impact": "This vulnerability can lead to remote code execution, allowing attackers to take control of the affected system.\n",
+              "reference": [
+                "http://struts.apache.org/release/2.3.x/docs/s2-016.html",
+                "https://cwiki.apache.org/confluence/display/WW/S2-016",
+                "https://nvd.nist.gov/vuln/detail/CVE-2013-2251",
+                "http://archiva.apache.org/security.html",
+                "http://cxsecurity.com/issue/WLB-2014010087"
+              ],
+              "severity": "critical",
+              "metadata": {
+                "google-query": "intitle:\"struts2 showcase\"",
+                "max-request": 9,
+                "vendor": "apache",
+                "product": "struts",
+                "shodan-query": [
+                  "http.html:\"apache struts\"",
+                  "http.title:\"struts2 showcase\"",
+                  "http.html:\"struts problem report\""
+                ],
+                "fofa-query": [
+                  "body=\"struts problem report\"",
+                  "title=\"struts2 showcase\"",
+                  "body=\"apache struts\""
+                ]
+              },
+              "classification": {
+                "cve-id": ["cve-2013-2251"],
+                "cwe-id": ["cwe-20"],
+                "cvss-metrics": "CVSS:2.0/AV:N/AC:M/Au:N/C:C/I:C/A:C",
+                "cvss-score": 9.3,
+                "epss-score": 0.94226,
+                "epss-percentile": 0.99919,
+                "cpe": "cpe:2.3:a:apache:struts:2.0.0:*:*:*:*:*:*:*"
+              },
+              "remediation": "Developers should immediately upgrade to Struts 2.3.15.1 or later."
+            },
+            "type": "http",
+            "host": "192.168.100.157:8080",
+            "port": "8080",
+            "scheme": "http",
+            "url": "http://192.168.100.157:8080",
+            "meta": {
+              "params": "redirect"
+            },
+            "ip": "192.168.100.157",
+            "timestamp": "2025-11-07T01:28:25.624884-06:00",
+            "matcher-status": true
+          },
+          {
+            "template": "http/cves/2013/CVE-2013-2251.yaml",
+            "template-id": "CVE-2013-2251",
+            "info": {
+              "name": "Apache Struts 2 - DefaultActionMapper Prefixes OGNL Code Execution",
+              "author": ["exploitation", "dwisiswant0", "alex"],
+              "tags": [
+                "cve2013",
+                "cve",
+                "rce",
+                "struts",
+                "apache",
+                "ognl",
+                "kev",
+                "vkev",
+                "vuln"
+              ],
+              "description": "In Struts 2 before 2.3.15.1 the information following \"action:\", \"redirect:\", or \"redirectAction:\" is not properly sanitized and will be evaluated as an OGNL expression against the value stack. This introduces the possibility to inject server side code.",
+              "impact": "This vulnerability can lead to remote code execution, allowing attackers to take control of the affected system.\n",
+              "reference": [
+                "http://struts.apache.org/release/2.3.x/docs/s2-016.html",
+                "https://cwiki.apache.org/confluence/display/WW/S2-016",
+                "https://nvd.nist.gov/vuln/detail/CVE-2013-2251",
+                "http://archiva.apache.org/security.html",
+                "http://cxsecurity.com/issue/WLB-2014010087"
+              ],
+              "severity": "critical",
+              "metadata": {
+                "max-request": 9,
+                "vendor": "apache",
+                "product": "struts",
+                "shodan-query": [
+                  "http.html:\"apache struts\"",
+                  "http.title:\"struts2 showcase\"",
+                  "http.html:\"struts problem report\""
+                ],
+                "fofa-query": [
+                  "body=\"struts problem report\"",
+                  "title=\"struts2 showcase\"",
+                  "body=\"apache struts\""
+                ],
+                "google-query": "intitle:\"struts2 showcase\""
+              },
+              "classification": {
+                "cve-id": ["cve-2013-2251"],
+                "cwe-id": ["cwe-20"],
+                "cvss-metrics": "CVSS:2.0/AV:N/AC:M/Au:N/C:C/I:C/A:C",
+                "cvss-score": 9.3,
+                "epss-score": 0.94226,
+                "epss-percentile": 0.99919,
+                "cpe": "cpe:2.3:a:apache:struts:2.0.0:*:*:*:*:*:*:*"
+              },
+              "remediation": "Developers should immediately upgrade to Struts 2.3.15.1 or later."
+            },
+            "type": "http",
+            "host": "192.168.100.157:8080",
+            "port": "8080",
+            "scheme": "http",
+            "url": "http://192.168.100.157:8080",
+            "meta": {
+              "params": "redirectAction"
+            },
+            "ip": "192.168.100.157",
+            "timestamp": "2025-11-07T01:28:25.630492-06:00",
+            "matcher-status": true
+          },
+          {
+            "template": "http/cves/2017/CVE-2017-5638.yaml",
+            "template-id": "CVE-2017-5638",
+            "info": {
+              "name": "Apache Struts 2 - Remote Command Execution",
+              "author": ["random_robbie"],
+              "tags": [
+                "cve2017",
+                "cve",
+                "apache",
+                "kev",
+                "msf",
+                "struts",
+                "rce",
+                "vkev",
+                "vuln"
+              ],
+              "description": "Apache Struts 2.3.x before 2.3.32 and 2.5.x before 2.5.10.1 is susceptible to remote command injection attacks. The Jakarta Multipart parser has incorrect exception handling and error-message generation during file upload attempts, which can allow an attacker to execute arbitrary commands via a crafted Content-Type, Content-Disposition, or Content-Length HTTP header. This was exploited in March 2017 with a Content-Type header containing a #cmd= string.\n",
+              "impact": "Remote attackers can execute arbitrary commands on the target system.\n",
+              "reference": [
+                "https://github.com/mazen160/struts-pwn",
+                "https://isc.sans.edu/diary/22169",
+                "https://github.com/rapid7/metasploit-framework/issues/8064",
+                "https://nvd.nist.gov/vuln/detail/CVE-2017-5638",
+                "http://blog.talosintelligence.com/2017/03/apache-0-day-exploited.html"
+              ],
+              "severity": "critical",
+              "metadata": {
+                "verified": true,
+                "max-request": 1,
+                "vendor": "apache",
+                "product": "struts",
+                "shodan-query": [
+                  "html:\"Apache Struts\"",
+                  "http.title:\"struts2 showcase\"",
+                  "http.html:\"struts problem report\"",
+                  "http.html:\"apache struts\""
+                ],
+                "fofa-query": [
+                  "body=\"struts problem report\"",
+                  "title=\"struts2 showcase\"",
+                  "body=\"apache struts\""
+                ],
+                "google-query": "intitle:\"struts2 showcase\""
+              },
+              "classification": {
+                "cve-id": ["cve-2017-5638"],
+                "cwe-id": ["cwe-20"],
+                "cvss-metrics": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+                "cvss-score": 10,
+                "epss-score": 0.94267,
+                "epss-percentile": 0.9993,
+                "cpe": "cpe:2.3:a:apache:struts:2.3.5:*:*:*:*:*:*:*"
+              },
+              "remediation": "Upgrade to Apache Struts 2.3.32 or 2.5.10.1 or apply the necessary patches.\n"
+            },
+            "type": "http",
+            "host": "192.168.100.157:8080",
+            "port": "8080",
+            "scheme": "http",
+            "url": "http://192.168.100.157:8080",
+            "ip": "192.168.100.157",
+            "timestamp": "2025-11-07T01:28:26.259366-06:00",
+            "matcher-status": true
+          },
+          {
+            "template": "http/cves/2017/CVE-2017-9791.yaml",
+            "template-id": "CVE-2017-9791",
+            "info": {
+              "name": "Apache Struts2 S2-053 - Remote Code Execution",
+              "author": ["pikpikcu"],
+              "tags": [
+                "cve2017",
+                "cve",
+                "apache",
+                "rce",
+                "struts",
+                "kev",
+                "vkev",
+                "vuln"
+              ],
+              "description": "Apache Struts 2.1.x and 2.3.x  with the Struts 1 plugin might allow remote code execution via a malicious field value passed in a raw message to the ActionMessage.\n",
+              "impact": "Remote code execution\n",
+              "reference": [
+                "http://www.oracle.com/technetwork/security-advisory/alert-cve-2017-9805-3889403.html",
+                "http://struts.apache.org/docs/s2-048.html",
+                "http://web.archive.org/web/20211207175819/https://securitytracker.com/id/1038838",
+                "http://www.securitytracker.com/id/1038838",
+                "https://security.netapp.com/advisory/ntap-20180706-0002/"
+              ],
+              "severity": "critical",
+              "metadata": {
+                "product": "struts",
+                "shodan-query": [
+                  "title:\"Struts2 Showcase\"",
+                  "http.title:\"struts2 showcase\"",
+                  "http.html:\"struts problem report\"",
+                  "http.html:\"apache struts\""
+                ],
+                "fofa-query": [
+                  "title=\"Struts2 Showcase\"",
+                  "title=\"struts2 showcase\"",
+                  "body=\"apache struts\"",
+                  "body=\"struts problem report\""
+                ],
+                "google-query": "intitle:\"struts2 showcase\"",
+                "verified": true,
+                "max-request": 1,
+                "vendor": "apache"
+              },
+              "classification": {
+                "cve-id": ["cve-2017-9791"],
+                "cwe-id": ["cwe-20"],
+                "cvss-metrics": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+                "cvss-score": 9.8,
+                "epss-score": 0.94239,
+                "epss-percentile": 0.99922,
+                "cpe": "cpe:2.3:a:apache:struts:2.3.1:*:*:*:*:*:*:*"
+              },
+              "remediation": "Apply the latest security patches or upgrade to a non-vulnerable version of Apache Struts2.\n"
+            },
+            "type": "http",
+            "host": "192.168.100.157:8080",
+            "port": "8080",
+            "scheme": "http",
+            "url": "http://192.168.100.157:8080",
+            "ip": "192.168.100.157",
+            "timestamp": "2025-11-07T01:28:26.504569-06:00",
+            "matcher-status": true
+          },
+          {
+            "template": "http/cves/2013/CVE-2013-2248.yaml",
+            "template-id": "CVE-2013-2248",
+            "info": {
+              "name": "Apache Struts - Multiple Open Redirection Vulnerabilities",
+              "author": ["0x_akoko"],
+              "tags": [
+                "cve2013",
+                "cve",
+                "apache",
+                "redirect",
+                "struts",
+                "edb",
+                "vuln"
+              ],
+              "description": "Apache Struts is prone to multiple open-redirection vulnerabilities because the application fails to properly sanitize user-supplied input.",
+              "impact": "An attacker can exploit these vulnerabilities to redirect users to malicious websites, leading to phishing attacks or the download of malware.\n",
+              "reference": [
+                "https://www.exploit-db.com/exploits/38666",
+                "https://nvd.nist.gov/vuln/detail/CVE-2013-2248",
+                "https://cwiki.apache.org/confluence/display/WW/S2-017",
+                "http://struts.apache.org/release/2.3.x/docs/s2-017.html",
+                "http://www.fujitsu.com/global/support/software/security/products-f/interstage-bpm-analytics-201301e.html"
+              ],
+              "severity": "medium",
+              "metadata": {
+                "product": "struts",
+                "shodan-query": [
+                  "http.html:\"apache struts\"",
+                  "http.title:\"struts2 showcase\"",
+                  "http.html:\"struts problem report\""
+                ],
+                "fofa-query": [
+                  "body=\"struts problem report\"",
+                  "title=\"struts2 showcase\"",
+                  "body=\"apache struts\""
+                ],
+                "google-query": "intitle:\"struts2 showcase\"",
+                "max-request": 1,
+                "vendor": "apache"
+              },
+              "classification": {
+                "cve-id": ["cve-2013-2248"],
+                "cwe-id": ["cwe-20"],
+                "cvss-metrics": "CVSS:2.0/AV:N/AC:M/Au:N/C:P/I:P/A:N",
+                "cvss-score": 5.8,
+                "epss-score": 0.93524,
+                "epss-percentile": 0.99818,
+                "cpe": "cpe:2.3:a:apache:struts:2.0.0:*:*:*:*:*:*:*"
+              },
+              "remediation": "Developers should immediately upgrade to Struts 2.3.15.1 or later."
+            },
+            "type": "http",
+            "host": "192.168.100.157:8080",
+            "port": "8080",
+            "scheme": "http",
+            "url": "http://192.168.100.157:8080",
+            "ip": "192.168.100.157",
+            "timestamp": "2025-11-07T01:28:50.175836-06:00",
+            "matcher-status": true
+          }
+        ]
+      }
+    ]
+  }
+]

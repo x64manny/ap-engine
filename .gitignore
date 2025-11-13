@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# GitHub Copilot
+.github/copilot-instructions.md
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+test_result.json
+
+# Logs
+*.log
+logs/
+
+# Docker
+docker-compose.override.yml
+
+# Other
+*.bak
+*.tmp
+.cache/
