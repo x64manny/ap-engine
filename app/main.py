@@ -1,19 +1,17 @@
 """
-FastAPI application - Simple attack path generation API.
-
-Single endpoint with no bias or hardcoded methodologies.
+FastAPI application - Attack path generation API for backend scanner data.
 """
 from fastapi import FastAPI
 
 from app.config import settings
-from app.models import AttackPathResponse, TargetInput
+from app.models import AttackPathResponse, BackendInput
 from app.services.attack_path_generator import AttackPathGenerator
 
 # Initialize FastAPI app
 app = FastAPI(
     title=settings.API_TITLE,
     version=settings.API_VERSION,
-    description="Simple AI-powered attack path generator"
+    description="AI-powered attack path generator for backend scanner data"
 )
 
 
@@ -33,32 +31,49 @@ def health():
 
 
 @app.post("/generate", response_model=AttackPathResponse)
-async def generate_attack_path(target: TargetInput) -> AttackPathResponse:
+async def generate_attack_path(backend_input: BackendInput) -> AttackPathResponse:
     """
-    Generate attack path for a target.
+    Generate attack path for targets from backend scanner.
+    
+    Accepts array of targets matching parameters.json structure.
     
     Args:
-        target: Target with 5 parameters (open_ports, services, applications, 
-                vulnerabilities, exposure)
+        backend_input: Backend scanner data with array of targets
     
     Returns:
         AttackPathResponse with generated attack path
         
     Example:
         >>> response = requests.post("/generate", json={
-        ...     "open_ports": ["22", "80", "443"],
-        ...     "services": ["ssh", "http", "https"],
-        ...     "applications": ["apache", "openssh"],
-        ...     "vulnerabilities": [
-        ...         {"cve": "CVE-2021-3156", "score": "7.8"}
-        ...     ],
-        ...     "exposure": {
-        ...         "is_internet_exposed": "true",
-        ...         "has_legacy_os": "false",
-        ...         "has_admin_shares": "false"
-        ...     }
+        ...     "targets": [
+        ...         {
+        ...             "IpAddress": "192.168.100.157",
+        ...             "Hostname": "test-host",
+        ...             "Os": "Linux 3.10 - 4.11",
+        ...             "Services": [
+        ...                 {
+        ...                     "Port": 8080,
+        ...                     "ServiceName": "http",
+        ...                     "Product": "Apache Tomcat",
+        ...                     "Version": "5.5.23",
+        ...                     "Vulnerabilities": [
+        ...                         {
+        ...                             "template-id": "CVE-2017-5638",
+        ...                             "info": {
+        ...                                 "name": "Apache Struts 2 - RCE",
+        ...                                 "severity": "critical",
+        ...                                 "classification": {
+        ...                                     "cvss-score": 10.0
+        ...                                 }
+        ...                             }
+        ...                         }
+        ...                     ]
+        ...                 }
+        ...             ]
+        ...         }
+        ...     ]
         ... })
     """
     generator = AttackPathGenerator()
-    result = await generator.generate(target)
+    result = await generator.generate(backend_input)
     return result

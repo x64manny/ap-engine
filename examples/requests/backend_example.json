@@ -1,0 +1,35 @@
+{
+  "targets": [
+    {
+      "IpAddress": "192.168.100.157",
+      "MacAddress": "00:0C:29:3E:5B:4C",
+      "Os": "Linux 3.10 - 4.11",
+      "Hostname": "test-host",
+      "Services": [
+        {
+          "Port": 8080,
+          "Protocol": "tcp",
+          "State": "open",
+          "ServiceName": "http",
+          "Product": "Apache Tomcat",
+          "Version": "5.5.23",
+          "Vulnerabilities": [
+            {
+              "template-id": "CVE-2017-5638",
+              "info": {
+                "name": "Apache Struts 2 - Remote Command Execution",
+                "severity": "critical",
+                "classification": {
+                  "cve-id": ["CVE-2017-5638"],
+                  "cvss-score": 10.0,
+                  "epss-score": 0.94267
+                },
+                "remediation": "Upgrade to Apache Struts 2.3.32 or 2.5.10.1"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,57 +1,38 @@
 """
-Simple prompt builder for attack path generation.
-
-No bias, no hardcoded methodologies, no specific frameworks.
-Just a clean prompt based on the 5 input parameters.
+Prompt builder for attack path generation from backend scanner data.
 """
-from app.models.target_input import TargetInput
+from app.models.backend_input import BackendInput
 
 
 class PromptBuilder:
-    """Builds simple prompts for attack path generation."""
+    """Builds prompts for attack path generation from backend data."""
     
     @staticmethod
-    def build_prompt(target: TargetInput) -> str:
+    def build_prompt(backend_input: BackendInput) -> str:
         """
-        Build a simple, unbiased prompt for attack path generation.
+        Build prompt from backend scanner data.
         
         Args:
-            target: Target input with 5 parameters
+            backend_input: Backend input with array of targets
             
         Returns:
-            Clean prompt string with no hardcoded methodologies
+            Formatted prompt string
         """
-        # Format vulnerabilities
-        vuln_list = "\n".join([
-            f"  - {v.cve} (Score: {v.score})"
-            for v in target.vulnerabilities
-        ]) if target.vulnerabilities else "  - None detected"
+        if not backend_input.targets:
+            raise ValueError("No targets provided in backend input")
         
-        # Format exposure
-        exposure_info = (
-            f"  - Internet Exposed: {target.exposure.is_internet_exposed}\n"
-            f"  - Legacy OS: {target.exposure.has_legacy_os}\n"
-            f"  - Admin Shares: {target.exposure.has_admin_shares}"
-        )
+        # Build sections for each target
+        target_sections = []
+        for idx, target in enumerate(backend_input.targets, 1):
+            target_section = PromptBuilder._build_target_section(target, idx)
+            target_sections.append(target_section)
         
-        prompt = f"""Generate a realistic attack path for a target with the following characteristics:
+        # Combine all targets
+        all_targets = "\n\n".join(target_sections)
+        
+        prompt = f"""Generate a realistic attack path for the following target(s):
 
-TARGET INFORMATION:
-
-Open Ports:
-{chr(10).join([f'  - {port}' for port in target.open_ports]) if target.open_ports else '  - None detected'}
-
-Services:
-{chr(10).join([f'  - {service}' for service in target.services]) if target.services else '  - None detected'}
-
-Applications:
-{chr(10).join([f'  - {app}' for app in target.applications]) if target.applications else '  - None detected'}
-
-Vulnerabilities:
-{vuln_list}
-
-Exposure:
-{exposure_info}
+{all_targets}
 
 TASK:
 Based on the above information, generate a detailed attack path that describes:
@@ -64,3 +45,86 @@ Provide a clear, step-by-step attack sequence with technical details where appro
 Focus on realistic attack scenarios based on the actual vulnerabilities and services present."""
         
         return prompt
+    
+    @staticmethod
+    def _build_target_section(target, index: int) -> str:
+        """Build formatted section for a single target."""
+        # Host information
+        host_parts = []
+        if target.IpAddress:
+            host_parts.append(f"IP: {target.IpAddress}")
+        if target.Hostname:
+            host_parts.append(f"Hostname: {target.Hostname}")
+        if target.Os:
+            host_parts.append(f"OS: {target.Os}")
+        if target.MacAddress:
+            host_parts.append(f"MAC: {target.MacAddress}")
+        if target.LastSeen:
+            host_parts.append(f"Last Seen: {target.LastSeen}")
+        
+        host_section = "\n".join([f"  - {part}" for part in host_parts]) if host_parts else "  - No host information"
+        
+        # Services with vulnerabilities
+        services_section = ""
+        if target.Services:
+            service_entries = []
+            for svc in target.Services:
+                # Service header
+                svc_line = f"Port {svc.Port}"
+                if svc.Protocol:
+                    svc_line += f"/{svc.Protocol}"
+                if svc.State:
+                    svc_line += f" ({svc.State})"
+                if svc.ServiceName:
+                    svc_line += f" - {svc.ServiceName}"
+                if svc.Product:
+                    svc_line += f" [{svc.Product}"
+                    if svc.Version:
+                        svc_line += f" {svc.Version}"
+                    svc_line += "]"
+                if svc.ExtraInfo:
+                    svc_line += f" ({svc.ExtraInfo})"
+                
+                service_entries.append(f"  - {svc_line}")
+                
+                # Add vulnerabilities for this service
+                if svc.Vulnerabilities:
+                    for vuln in svc.Vulnerabilities:
+                        vuln_line = "    └─ "
+                        
+                        # Vulnerability name
+                        if vuln.info and vuln.info.name:
+                            vuln_line += vuln.info.name
+                        elif vuln.template_id:
+                            vuln_line += vuln.template_id
+                        else:
+                            vuln_line += "Unknown Vulnerability"
+                        
+                        # CVE ID
+                        if vuln.template_id and vuln.template_id.startswith("CVE"):
+                            vuln_line += f" ({vuln.template_id})"
+                        
+                        # Severity
+                        if vuln.info and vuln.info.severity:
+                            vuln_line += f" [Severity: {vuln.info.severity}]"
+                        
+                        # CVSS score
+                        if vuln.info and vuln.info.classification and vuln.info.classification.cvss_score:
+                            vuln_line += f" [CVSS: {vuln.info.classification.cvss_score}]"
+                        
+                        service_entries.append(vuln_line)
+            
+            services_section = "\n".join(service_entries)
+        else:
+            services_section = "  - No services detected"
+        
+        # Build complete target section
+        section = f"""TARGET {index}:
+
+Host:
+{host_section}
+
+Services and Vulnerabilities:
+{services_section}"""
+        
+        return section

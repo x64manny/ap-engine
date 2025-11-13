@@ -2,11 +2,25 @@
 Data models for the Attack Path Engine.
 """
 from app.models.response import AttackPathResponse
-from app.models.target_input import ExposureInfo, TargetInput, VulnerabilityInfo
+from app.models.backend_input import (
+    BackendInput,
+    Target,
+    Service,
+    Vulnerability,
+    VulnerabilityInfo,
+    VulnerabilityMetadata,
+    VulnerabilityClassification,
+    VulnerabilityMeta,
+)
 
 __all__ = [
-    "TargetInput",
+    "BackendInput",
+    "Target",
+    "Service",
+    "Vulnerability",
     "VulnerabilityInfo",
-    "ExposureInfo",
+    "VulnerabilityMetadata",
+    "VulnerabilityClassification",
+    "VulnerabilityMeta",
     "AttackPathResponse",
 ]

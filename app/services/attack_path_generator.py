@@ -1,5 +1,5 @@
 """
-Simple attack path generator service.
+Attack path generator service for backend scanner data.
 
 Single LLM call - no complex multi-stage workflows, no continuity validation.
 """
@@ -8,15 +8,15 @@ import uuid
 
 from app.config import settings
 from app.core.prompts import PromptBuilder
+from app.models.backend_input import BackendInput
 from app.models.response import AttackPathResponse
-from app.models.target_input import TargetInput
 from app.services.llm_client import LLMClient
 from app.utils.token_logger import get_token_logger
 
 
 class AttackPathGenerator:
     """
-    Simple attack path generator using a single LLM call.
+    Attack path generator using a single LLM call.
     
     No bias, no hardcoded stages, no complex workflows.
     """
@@ -27,12 +27,12 @@ class AttackPathGenerator:
         self.llm_client = LLMClient()
         self.token_logger = get_token_logger()
     
-    async def generate(self, target: TargetInput) -> AttackPathResponse:
+    async def generate(self, backend_input: BackendInput) -> AttackPathResponse:
         """
-        Generate an attack path for the given target.
+        Generate an attack path for the given backend scanner data.
         
         Args:
-            target: Target input with 5 parameters
+            backend_input: Backend input with array of targets
             
         Returns:
             AttackPathResponse with generated attack path
@@ -46,7 +46,7 @@ class AttackPathGenerator:
         print(f"{'='*60}\n")
         
         # Build prompt
-        prompt = self.prompt_builder.build_prompt(target)
+        prompt = self.prompt_builder.build_prompt(backend_input)
         
         # Simple system message - no bias
         system_message = (
