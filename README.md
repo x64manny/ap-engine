@@ -57,9 +57,7 @@ curl -X POST http://localhost:8000/generate \
   "open_ports": ["22", "80", "443"],
   "services": ["ssh", "http", "https"],
   "applications": ["apache", "openssh"],
-  "vulnerabilities": [
-    {"cve": "CVE-2021-3156", "score": "7.8"}
-  ],
+  "vulnerabilities": [{ "cve": "CVE-2021-3156", "score": "7.8" }],
   "exposure": {
     "is_internet_exposed": "true",
     "has_legacy_os": "false",
@@ -105,6 +103,7 @@ Edit `app/core/prompts.py` - the `build_prompt()` method formats your 5 paramete
 ### Change LLM Provider
 
 Set `LLM_MODEL` in `.env`:
+
 ```bash
 # OpenAI
 LLM_MODEL=gpt-4o-mini
@@ -162,6 +161,7 @@ LLM_TEMPERATURE=0.7            # Default: 0.7
 Health check
 
 **Response:**
+
 ```json
 {
   "status": "ok",
@@ -196,6 +196,7 @@ MIT
 ## 🙏 Credits
 
 Built with:
+
 - [FastAPI](https://fastapi.tiangolo.com/)
 - [LiteLLM](https://github.com/BerriAI/litellm)
 - [Pydantic](https://pydantic-docs.helpmanual.io/)

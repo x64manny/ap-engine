@@ -5,12 +5,13 @@ Single LLM call - no complex multi-stage workflows, no continuity validation.
 """
 import time
 import uuid
-from app.models.target_input import TargetInput
-from app.models.response import AttackPathResponse
+
+from app.config import settings
 from app.core.prompts import PromptBuilder
+from app.models.response import AttackPathResponse
+from app.models.target_input import TargetInput
 from app.services.llm_client import LLMClient
 from app.utils.token_logger import get_token_logger
-from app.config import settings
 
 
 class AttackPathGenerator:

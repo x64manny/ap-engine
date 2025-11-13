@@ -4,6 +4,7 @@ Simple target input model for attack path generation.
 Matches the 5-parameter specification with no bias or hardcoded assumptions.
 """
 from typing import List
+
 from pydantic import BaseModel, Field
 
 

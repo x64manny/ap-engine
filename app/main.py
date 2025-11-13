@@ -4,10 +4,10 @@ FastAPI application - Simple attack path generation API.
 Single endpoint with no bias or hardcoded methodologies.
 """
 from fastapi import FastAPI
-from app.config import settings
-from app.models import TargetInput, AttackPathResponse
-from app.services.attack_path_generator import AttackPathGenerator
 
+from app.config import settings
+from app.models import AttackPathResponse, TargetInput
+from app.services.attack_path_generator import AttackPathGenerator
 
 # Initialize FastAPI app
 app = FastAPI(

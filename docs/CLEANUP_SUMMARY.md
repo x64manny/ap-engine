@@ -9,6 +9,7 @@ The repository has been successfully cleaned and simplified from a biased, metho
 ## 📊 Before vs After
 
 ### Lines of Code
+
 - **Before**: ~3,000 lines with hardcoded methodologies
 - **After**: ~320 lines of clean, unbiased code
 - **Reduction**: 89% decrease
@@ -16,6 +17,7 @@ The repository has been successfully cleaned and simplified from a biased, metho
 ### Files Structure
 
 #### Deleted Files (Bias Removal)
+
 - ❌ `app/models/attack_context.py` (7-stage tracking)
 - ❌ `app/models/complete_analysis.py` (complex stage models)
 - ❌ `app/models/host.py` (wrong schema)
@@ -25,6 +27,7 @@ The repository has been successfully cleaned and simplified from a biased, metho
 - ❌ Old `app/main.py` (complex endpoints with markdown conversion)
 
 #### New Simple Files
+
 - ✅ `app/models/target_input.py` (60 lines - clean 5-parameter model)
 - ✅ `app/models/response.py` (20 lines - simple response)
 - ✅ `app/core/prompts.py` (65 lines - unbiased prompt builder)
@@ -32,6 +35,7 @@ The repository has been successfully cleaned and simplified from a biased, metho
 - ✅ `app/main.py` (70 lines - single endpoint)
 
 #### Kept As-Is
+
 - ✅ `app/services/llm_client.py` (clean LiteLLM wrapper)
 - ✅ `app/utils/token_logger.py` (useful monitoring)
 - ✅ `app/config.py` (minimal configuration)
@@ -41,14 +45,13 @@ The repository has been successfully cleaned and simplified from a biased, metho
 ## 🎯 Current Architecture
 
 ### Input Schema (Matches Your Spec)
+
 ```json
 {
   "open_ports": ["22", "80", "443"],
   "services": ["ssh", "http", "https"],
   "applications": ["apache", "openssh"],
-  "vulnerabilities": [
-    {"cve": "CVE-2021-3156", "score": "7.8"}
-  ],
+  "vulnerabilities": [{ "cve": "CVE-2021-3156", "score": "7.8" }],
   "exposure": {
     "is_internet_exposed": "true",
     "has_legacy_os": "false",
@@ -58,10 +61,12 @@ The repository has been successfully cleaned and simplified from a biased, metho
 ```
 
 ### API Endpoints
+
 - `GET /health` - Health check
 - `POST /generate` - Generate attack path (single endpoint, no bias)
 
 ### Response Format
+
 ```json
 {
   "request_id": "uuid",
@@ -76,6 +81,7 @@ The repository has been successfully cleaned and simplified from a biased, metho
 ## 🚀 What Was Removed
 
 ### 1. Hardcoded Cyber Kill Chain (7 Stages)
+
 - ❌ Reconnaissance
 - ❌ Weaponization
 - ❌ Delivery
@@ -85,12 +91,14 @@ The repository has been successfully cleaned and simplified from a biased, metho
 - ❌ Actions on Objectives
 
 ### 2. Hardcoded Examples
+
 - ❌ "Granny Box IIS 6.0" exploitation reference (400+ lines)
 - ❌ Metasploit command syntax requirements
 - ❌ Windows/Linux/macOS specific procedures
 - ❌ Stage-specific MITRE ATT&CK mappings
 
 ### 3. Complex Features
+
 - ❌ Stage-level continuity validation
 - ❌ Artifact tracking across stages
 - ❌ Multi-stage LLM calls (7 sequential calls)
@@ -99,6 +107,7 @@ The repository has been successfully cleaned and simplified from a biased, metho
 - ❌ Validation reports
 
 ### 4. Biased Prompting
+
 - ❌ 900 lines of hardcoded SYSTEM_MESSAGE
 - ❌ Mandatory "reference example" in every prompt
 - ❌ Strict format enforcement rules
@@ -112,17 +121,20 @@ The repository has been successfully cleaned and simplified from a biased, metho
 ### Simple Components
 
 1. **Input Model** (`target_input.py`)
+
    - 5 parameters matching your spec
    - No nested complexity
    - Clean Pydantic validation
 
 2. **Prompt Builder** (`prompts.py`)
+
    - Single method: `build_prompt(target)`
    - Formats 5 parameters into clear prompt
    - No methodology bias
    - No hardcoded examples
 
 3. **Generator Service** (`attack_path_generator.py`)
+
    - Single LLM call
    - Simple system message (2 lines)
    - Token logging
@@ -138,6 +150,7 @@ The repository has been successfully cleaned and simplified from a biased, metho
 ## 📝 Usage Example
 
 ### Request
+
 ```bash
 curl -X POST http://localhost:8000/generate \
   -H "Content-Type: application/json" \
@@ -145,9 +158,11 @@ curl -X POST http://localhost:8000/generate \
 ```
 
 ### Sample Input (Included)
+
 See `examples/requests/sample_target.json`
 
 ### Response
+
 ```json
 {
   "request_id": "550e8400-e29b-41d4-a716-446655440000",
@@ -162,6 +177,7 @@ See `examples/requests/sample_target.json`
 ## ✅ Verification
 
 All imports verified:
+
 ```bash
 ✓ Imports successful
 ```
@@ -173,11 +189,13 @@ No errors or warnings in code.
 ## 🔄 Next Steps
 
 1. **Test the API**:
+
    ```bash
    uvicorn app.main:app --reload
    ```
 
 2. **Try sample request**:
+
    ```bash
    curl -X POST http://localhost:8000/generate \
      -H "Content-Type: application/json" \
