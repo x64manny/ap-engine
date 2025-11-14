@@ -5,6 +5,7 @@ All fields are Optional to support partial data from backend scanner.
 Field aliases used for hyphenated names (template-id → template_id).
 """
 from typing import List, Optional
+
 from pydantic import BaseModel, Field
 
 
@@ -98,5 +99,12 @@ class Target(BaseModel):
 
 
 class BackendInput(BaseModel):
-    """Root model - array of targets matching parameters.json."""
+    """
+    Root model - array of targets matching parameters.json.
+    
+    CONTRACT NOTE:
+    - The engine supports multiple targets in the schema for future flexibility.
+    - However, the collector contract is: one host per request (targets will contain exactly one item).
+    - All attack paths will be generated for that single host unless the input explicitly contains multiple targets.
+    """
     targets: List[Target] = Field(..., description="Array of target hosts")

@@ -1,26 +1,26 @@
 """
-Simple response model for attack path generation.
-
-No complex stage models or validation - just the attack path.
+Response models for attack path generation.
 """
 from pydantic import BaseModel, Field
+
+from app.models.attack_path_models import AttackPathResult
 
 
 class AttackPathResponse(BaseModel):
     """
-    Simple response containing the generated attack path.
+    Response containing structured attack paths with metadata.
     """
     request_id: str = Field(
         ...,
         description="Unique identifier for this request"
     )
-    attack_path: str = Field(
+    attack_path_result: AttackPathResult = Field(
         ...,
-        description="Generated attack path based on target parameters"
+        description="Structured attack paths with MITRE ATT&CK mapping"
     )
     execution_time_seconds: float = Field(
         ...,
-        description="Time taken to generate the attack path"
+        description="Time taken to generate the attack paths"
     )
     estimated_cost_usd: float = Field(
         default=0.0,

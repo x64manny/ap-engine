@@ -1,0 +1,47 @@
+{
+    "request_id": "4222c51b-25d9-40a1-b18f-49c318b72535",
+    "attack_path_result": {
+        "attack_paths": [
+            {
+                "id": "AP-1",
+                "risk_score": 0.95,
+                "risk_level": "Critical",
+                "justification": "This attack path exploits multiple critical vulnerabilities on the same host, specifically targeting the IIS service on port 80 and the RDP service on port 3389. The attacker can leverage CVE-2019-0708 (BlueKeep) for remote code execution via RDP, which is highly exposed. Additionally, the presence of CVE-2019-1234 (IIS Remote Code Execution) allows for further exploitation of the web server. The combination of these vulnerabilities presents a significant risk, especially given the critical CVSS scores of 9.8 and 8.8 respectively.",
+                "targets_involved": [
+                    "win-app-db-01"
+                ],
+                "mitre_chain": [
+                    {
+                        "stage": "Initial Access",
+                        "tactic": "TA0001 Initial Access",
+                        "technique_id": "T1210",
+                        "technique_name": "Exploitation of Remote Services",
+                        "description": "The attacker exploits the BlueKeep vulnerability (CVE-2019-0708) on the RDP service (port 3389) to gain initial access to the Windows Server 2019 host.",
+                        "defensive_context": "To mitigate this risk, organizations should apply the latest Microsoft patches for BlueKeep and restrict RDP access to trusted IPs only.",
+                        "detection_ideas": "Monitoring for unusual RDP connection attempts or exploitation patterns can help detect this initial access stage."
+                    },
+                    {
+                        "stage": "Execution",
+                        "tactic": "TA0002 Execution",
+                        "technique_id": "T1059",
+                        "technique_name": "Command and Scripting Interpreter",
+                        "description": "Once access is gained, the attacker executes commands to further exploit the system, potentially leveraging the IIS Remote Code Execution vulnerability (CVE-2019-1234) to execute arbitrary code.",
+                        "defensive_context": "Implementing application whitelisting and monitoring for unauthorized command executions can help defend against this step.",
+                        "detection_ideas": "Log analysis for unexpected command executions or script activity can indicate exploitation attempts."
+                    },
+                    {
+                        "stage": "Privilege Escalation",
+                        "tactic": "TA0004 Privilege Escalation",
+                        "technique_id": "T1068",
+                        "technique_name": "Exploitation for Privilege Escalation",
+                        "description": "The attacker exploits the SQL Server Privilege Escalation vulnerability (CVE-2019-1068) on port 1433 to gain elevated privileges within the system.",
+                        "defensive_context": "Regularly updating SQL Server and restricting access to the database can help mitigate this risk.",
+                        "detection_ideas": "Monitoring for unusual database access patterns or privilege changes can help detect this escalation attempt."
+                    }
+                ]
+            }
+        ]
+    },
+    "execution_time_seconds": 13.59,
+    "estimated_cost_usd": 0.0008
+}

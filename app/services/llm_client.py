@@ -31,10 +31,11 @@ Usage:
     >>> print(result["attack_path"])
 """
 import json
-from typing import Dict, Any
-import litellm
-from app.config import settings
+from typing import Any, Dict
 
+import litellm
+
+from app.config import settings
 
 # =============================================================================
 # LLM Client Class
@@ -112,8 +113,8 @@ class LLMClient:
                 Example: "You are a MITRE ATT&CK expert specializing in..."
                 
             user_prompt (str): The actual prompt containing the task and data.
-                This is the dynamic, request-specific content built by PromptBuilder.
-                Example: "Generate attack path for: Linux Ubuntu 20.04 with..."
+                This is the dynamic, request-specific content built by build_attack_path_user_prompt.
+                Example: JSON representation of BackendInput with targets/services/vulnerabilities.
                 
             json_mode (bool, optional): Whether to request JSON-formatted response.
                 When True, instructs the LLM to return valid JSON that can be parsed.

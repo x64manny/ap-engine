@@ -1,0 +1,29 @@
+{
+    "request_id": "ef1d2206-08fb-495c-8c53-f6f21f9cf65a",
+    "attack_path_result": {
+        "attack_paths": [
+            {
+                "id": "AP-1",
+                "risk_score": 0.95,
+                "risk_level": "Critical",
+                "justification": "The attack path exploits the SMB service running on port 445, which is a common target for attackers. The presence of the critical vulnerability SMBGhost (CVE-2020-0796) with a CVSS score of 10.0 allows for remote code execution, making this a high-risk attack path. The attack is realistic as the service is exposed and the vulnerability is well-known.",
+                "targets_involved": [
+                    "isolated-host"
+                ],
+                "mitre_chain": [
+                    {
+                        "stage": "Initial Access",
+                        "tactic": "TA0001 Initial Access",
+                        "technique_id": "T1190",
+                        "technique_name": "Exploit Public-Facing Application",
+                        "description": "The attacker exploits the SMBGhost vulnerability (CVE-2020-0796) in the SMB service on port 445 to gain initial access to the Windows Server 2016 host.",
+                        "defensive_context": "Defenders can prevent this step by applying the latest Microsoft security updates to mitigate the SMBGhost vulnerability.",
+                        "detection_ideas": "Monitoring for unusual SMB traffic patterns and failed authentication attempts can help detect exploitation attempts against the SMB service."
+                    }
+                ]
+            }
+        ]
+    },
+    "execution_time_seconds": 6.58,
+    "estimated_cost_usd": 0.0004
+}

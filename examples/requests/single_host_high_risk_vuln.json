@@ -1,0 +1,54 @@
+{
+  "targets": [
+    {
+      "IpAddress": "192.168.1.10",
+      "Hostname": "isolated-host",
+      "Os": "Windows Server 2016",
+      "Services": [
+        {
+          "Port": 445,
+          "Protocol": "tcp",
+          "State": "open",
+          "ServiceName": "microsoft-ds",
+          "Product": "Windows SMB",
+          "Version": "3.1.1",
+          "Vulnerabilities": [
+            {
+              "template": null,
+              "template_id": "CVE-2020-0796",
+              "info": {
+                "name": "SMBGhost RCE",
+                "author": null,
+                "tags": null,
+                "description": null,
+                "impact": null,
+                "reference": null,
+                "severity": "critical",
+                "metadata": null,
+                "classification": {
+                  "cve_id": ["CVE-2020-0796"],
+                  "cwe_id": null,
+                  "cvss_metrics": null,
+                  "cvss_score": 10.0,
+                  "epss_score": null,
+                  "epss_percentile": null,
+                  "cpe": null
+                },
+                "remediation": "Apply Microsoft security update"
+              },
+              "type": null,
+              "host": null,
+              "port": null,
+              "scheme": null,
+              "url": null,
+              "ip": null,
+              "timestamp": null,
+              "matcher_status": null,
+              "meta": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

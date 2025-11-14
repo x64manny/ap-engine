@@ -1,0 +1,63 @@
+{
+  "targets": [
+    {
+      "IpAddress": "10.42.17.8",
+      "Hostname": "app-server-01",
+      "Os": "Ubuntu 20.04 LTS",
+      "Services": [
+        {
+          "Port": 8080,
+          "Protocol": "tcp",
+          "State": "open",
+          "ServiceName": "http",
+          "Product": "Apache Tomcat",
+          "Version": "9.0.31",
+          "Vulnerabilities": [
+            {
+              "template": null,
+              "template_id": "CVE-2021-4104",
+              "info": {
+                "name": "Apache Tomcat - Deserialization RCE",
+                "author": null,
+                "tags": null,
+                "description": null,
+                "impact": null,
+                "reference": null,
+                "severity": "high",
+                "metadata": null,
+                "classification": {
+                  "cve_id": ["CVE-2021-4104"],
+                  "cwe_id": null,
+                  "cvss_metrics": null,
+                  "cvss_score": 8.8,
+                  "epss_score": null,
+                  "epss_percentile": null,
+                  "cpe": null
+                },
+                "remediation": "Upgrade Tomcat to latest 9.x"
+              },
+              "type": null,
+              "host": null,
+              "port": null,
+              "scheme": null,
+              "url": null,
+              "ip": null,
+              "timestamp": null,
+              "matcher_status": null,
+              "meta": null
+            }
+          ]
+        },
+        {
+          "Port": 22,
+          "Protocol": "tcp",
+          "State": "open",
+          "ServiceName": "ssh",
+          "Product": "OpenSSH",
+          "Version": "7.6p1",
+          "Vulnerabilities": []
+        }
+      ]
+    }
+  ]
+}

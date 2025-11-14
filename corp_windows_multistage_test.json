@@ -1,0 +1,47 @@
+{
+    "request_id": "1181b7fe-5aef-4e6c-acbd-2a3e5650b9bb",
+    "attack_path_result": {
+        "attack_paths": [
+            {
+                "id": "AP-1",
+                "risk_score": 0.95,
+                "risk_level": "Critical",
+                "justification": "This attack path exploits critical vulnerabilities in exposed services on the Windows Server 2016 host. The IIS service on port 80 is vulnerable to CVE-2017-7269 (IIS WebDAV RCE), and the SMB service on port 445 is vulnerable to CVE-2020-0796 (SMBGhost RCE), both of which allow for remote code execution. The presence of SQL Server on port 1433, which is vulnerable to CVE-2016-7249 (SQL Server Privilege Escalation), further increases the risk as it could lead to privilege escalation after initial access. The attack path is realistic due to the critical nature of the vulnerabilities and the exposure of these services on common ports.",
+                "targets_involved": [
+                    "corp-app-db-02"
+                ],
+                "mitre_chain": [
+                    {
+                        "stage": "Initial Access",
+                        "tactic": "TA0001 Initial Access",
+                        "technique_id": "T1190",
+                        "technique_name": "Exploit Public-Facing Application",
+                        "description": "The attacker exploits the IIS WebDAV RCE vulnerability (CVE-2017-7269) on port 80 to gain initial access to the server.",
+                        "defensive_context": "Defenders should apply security updates for WebDAV processing and restrict access to the IIS service.",
+                        "detection_ideas": "Monitor for unusual HTTP requests or payloads targeting the WebDAV functionality."
+                    },
+                    {
+                        "stage": "Execution",
+                        "tactic": "TA0002 Execution",
+                        "technique_id": "T1203",
+                        "technique_name": "Exploitation for Client Execution",
+                        "description": "After gaining access, the attacker executes arbitrary commands on the server due to the remote code execution capability of the exploited vulnerability.",
+                        "defensive_context": "Implement application whitelisting and monitor for unauthorized command execution.",
+                        "detection_ideas": "Log and analyze command execution events for suspicious activity."
+                    },
+                    {
+                        "stage": "Privilege Escalation",
+                        "tactic": "TA0004 Privilege Escalation",
+                        "technique_id": "T1068",
+                        "technique_name": "Exploitation for Privilege Escalation",
+                        "description": "The attacker exploits the SQL Server Privilege Escalation vulnerability (CVE-2016-7249) on port 1433 to escalate privileges within the system.",
+                        "defensive_context": "Regularly apply cumulative updates to SQL Server and restrict database access to necessary accounts only.",
+                        "detection_ideas": "Monitor SQL Server logs for unusual access patterns or privilege changes."
+                    }
+                ]
+            }
+        ]
+    },
+    "execution_time_seconds": 8.17,
+    "estimated_cost_usd": 0.0008
+}

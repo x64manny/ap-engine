@@ -1,0 +1,29 @@
+{
+    "request_id": "1c2c66c2-25a4-484b-bc86-17762f48d0e3",
+    "attack_path_result": {
+        "attack_paths": [
+            {
+                "id": "AP-1",
+                "risk_score": 0.95,
+                "risk_level": "Critical",
+                "justification": "The attack path exploits the high-severity vulnerability CVE-2021-4104 in Apache Tomcat running on port 8080, which allows for remote code execution. This service is exposed on a common port, making it a likely target for attackers. The lack of additional pivot options limits the attack chain to a single host.",
+                "targets_involved": [
+                    "app-server-01"
+                ],
+                "mitre_chain": [
+                    {
+                        "stage": "Initial Access",
+                        "tactic": "TA0001 Initial Access",
+                        "technique_id": "T1190",
+                        "technique_name": "Exploit Public-Facing Application",
+                        "description": "The attacker exploits the CVE-2021-4104 vulnerability in Apache Tomcat to achieve remote code execution on app-server-01.",
+                        "defensive_context": "Defenders should ensure that Apache Tomcat is updated to the latest version to mitigate this vulnerability and restrict access to the service from untrusted networks.",
+                        "detection_ideas": "Monitoring for unusual requests or payloads targeting the Tomcat service on port 8080 can help detect exploitation attempts."
+                    }
+                ]
+            }
+        ]
+    },
+    "execution_time_seconds": 4.93,
+    "estimated_cost_usd": 0.0004
+}

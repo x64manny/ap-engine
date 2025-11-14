@@ -2,6 +2,8 @@
 
 Clean, unbiased AI-powered attack path generation from backend scanner data.
 
+See `CONTRACT.md` for the canonical `/generate` request and response JSON contract.
+
 ## 🎯 Overview
 
 Simple API that accepts vulnerability scanner output and generates attack paths using LLM.
@@ -95,15 +97,19 @@ Matches **parameters.json** structure exactly:
 ### Field Names (EXACT from parameters.json)
 
 **Target Level:**
+
 - `IpAddress`, `MacAddress`, `Os`, `Hostname`, `LastSeen`, `Services`
 
 **Service Level:**
+
 - `Port`, `Protocol`, `State`, `ServiceName`, `Product`, `Version`, `ExtraInfo`, `Vulnerabilities`
 
 **Vulnerability Level:**
+
 - `template`, `template-id`, `info`, `type`, `host`, `port`, `scheme`, `url`, `matcher-status`
 
 **Info Object:**
+
 - `name`, `author`, `tags`, `description`, `impact`, `reference`, `severity`, `metadata`, `classification`, `remediation`
 
 All fields are **Optional** - backend can send partial data.
@@ -147,11 +153,13 @@ python3 wrap_parameters.py parameters.json backend_request.json
 ```
 
 This converts:
+
 ```json
 [{"IpAddress": "...", "Services": [...]}]
 ```
 
 To:
+
 ```json
 {"targets": [{"IpAddress": "...", "Services": [...]}]}
 ```
@@ -189,6 +197,7 @@ LLM_MODEL=ollama/llama2
 Health check
 
 **Response:**
+
 ```json
 {
   "status": "ok",
@@ -250,6 +259,7 @@ MIT
 ## 🙏 Credits
 
 Built with:
+
 - [FastAPI](https://fastapi.tiangolo.com/)
 - [LiteLLM](https://github.com/BerriAI/litellm)
 - [Pydantic](https://pydantic-docs.helpmanual.io/)
